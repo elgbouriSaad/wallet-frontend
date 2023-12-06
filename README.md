@@ -30,5 +30,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Commands
 
-ng lint
-npm init @eslint/config
+ng lint <br/>
+npm init @eslint/config <br>
+npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
