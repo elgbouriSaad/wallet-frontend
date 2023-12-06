@@ -40,3 +40,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# User specific bazel settings
+.bazelrc.user
+
+# User specific ng-dev settings
+.ng-dev.user*
+
+# rollup-test output
+/modules/rollup-test/dist/
