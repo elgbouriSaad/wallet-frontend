@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
 *
 {
   margin: 0;
@@ -147,19 +146,10 @@ form
   display: flex;
   justify-content: space-between;
 }
-.links a
+.links a 
 {
   color: #fff;
   text-decoration: none;
-}
-.goHome {
-  background-color: transparent;
-  border: none;
-  color: white;
- 
-}
-.goHome i {
-  margin-left: 5px; /* Adjust the value based on your preference */
 }
 .links a:nth-child(2)
 {
