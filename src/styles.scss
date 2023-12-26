@@ -55,3 +55,40 @@ body{
     background-color: rgb(38, 39, 42);
     margin: 0;
 }
+html {
+    scroll-behavior: smooth;
+  }
+/* Width and color of the scrollbar track */
+::-webkit-scrollbar {
+    width: 13px; /* Adjust the width as needed */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #7053b4; /* Change the color on hover */
+}
+
+/* Handle on the scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: #7053b4; /* Set the color of the scrollbar handle */
+    border-radius: 6px; /* Round the corners of the handle */
+}
+
+/* Track background */
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Set the color of the scrollbar track */
+}
+
+/* Handle on Firefox */
+* {
+    scrollbar-width: thin; /* Adjust the width as needed */
+}
+
+*::-webkit-scrollbar-thumb:vertical {
+    background-color: #7053b480; /* Set the color of the scrollbar handle for Firefox */
+    border-radius: 6px; /* Round the corners of the handle for Firefox */
+}
+
+*::-webkit-scrollbar-thumb:vertical:active {
+    background-color: #7053b4e1; /* Change the color on active state for Firefox */
+}
