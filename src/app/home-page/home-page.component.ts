@@ -13,4 +13,9 @@ goLogin() {
   this.router.navigate(['/login']);
 }
 
+scrollToElement(element:any): void {
+  console.log(element);
+  element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
+
 }

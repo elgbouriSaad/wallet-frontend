@@ -40,7 +40,6 @@
     grid-template-columns: 1fr 1fr;
     place-items: center;
     width: 90%;
-    margin: 0 auto;
   }
   
   .text {
@@ -57,7 +56,7 @@
   
   img {
     max-width: 100%;
-    min-width: 100%;
+    
   }
   .websiteTitle{
 
@@ -86,9 +85,49 @@
   transition: background-color 0.3s ease;/* Smooth transition on hover */
  
 }
+.features{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin:0 auto;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+
+}
+.aboutItems{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.item{
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #00000088;
+  height: 200px;
+  border-radius: 15px;
+  padding: 39px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.item:hover{
+  background-color: #7053b44c;
+  border: 2px solid #7053b4;
+  transition: background-color 0.3s ease;
+  transform: scale(1.03); 
+
+}
   
 /* Media query for smaller screens, adjust as needed */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 699px) {
   .websiteTitle {
     font-size: 30px; /* Adjust the font size for smaller screens */
   }
@@ -107,14 +146,28 @@
   }
   .content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr ;
     place-items: center;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
+  }
+  .aboutItems{
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-column-gap: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+  
+  }
+  .item{
+    height: 220px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
   }
 }
 
-@media screen  and (min-width: 769px) and (max-width: 1300px) {
+@media screen  and (min-width: 700px) and (max-width: 1300px) {
   .websiteTitle {
     font-size: 50px; /* Adjust the font size for smaller screens */
   }
@@ -137,5 +190,12 @@
     place-items: center;
     width: 100%;
     margin: 0 auto;
+  }
+  .aboutItems{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
   }
 }
