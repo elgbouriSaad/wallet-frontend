@@ -9,7 +9,11 @@ const routes: Routes = [
 { path: 'home', component: HomePageComponent },
 { path: 'login', component: LoginPageComponent },
 { path: 'signup', component: SignupPageComponent },
-{ path: 'dashboard', component: DashboardPageComponent },
+{ path: 'dashboard', component: DashboardPageComponent,children: [
+  { path: 'overview', component: HomePageComponent },
+  // Add more child routes as needed
+], },
+
 ];
 
 @NgModule({

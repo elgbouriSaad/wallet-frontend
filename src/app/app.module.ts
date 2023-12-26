@@ -12,6 +12,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 
@@ -34,6 +35,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
     ButtonModule,
     AppRoutingModule,
     FormsModule,
+    SidebarModule
     
   ],
   providers: [],
