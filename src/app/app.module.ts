@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { SidebarModule } from 'primeng/sidebar';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -24,6 +25,8 @@ import { SidebarModule } from 'primeng/sidebar';
     HomePageComponent,
     SignupPageComponent,
     DashboardPageComponent,
+    NavbarComponent,
+    
     
     
  
