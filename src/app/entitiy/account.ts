@@ -1,4 +1,5 @@
-import { Objective } from './objective';
+import { Objective } from './Objective';
+import { Transaction } from './transaction';
 
 export class Account {
   constructor(
@@ -6,5 +7,6 @@ export class Account {
     public name: string,
     public balance: number,
     public objective: Objective[],
+    public transactions: Transaction[],
   ) {}
 }
