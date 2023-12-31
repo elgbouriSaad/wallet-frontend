@@ -7,7 +7,7 @@ import { Objective } from '../entitiy/objective';
   providedIn: 'root',
 })
 export class ObjectiveService {
-  url: string = 'http://localhost:8080/api/v1/objectives';
+  url: string = 'http://localhost:8080/api/v1/objective';
   constructor(private http: HttpClient) {}
 
   public allObjectives(): Observable<Objective[]> {
@@ -15,14 +15,18 @@ export class ObjectiveService {
   }
 
   public addObjective(obj: Objective): Observable<Objective> {
-    return this.http.post<Objective>(this.url + '/add', obj);
+    return this.http.post<Objective>(this.url + '/', obj);
   }
 
   public deleteObjective(obj: Objective): Observable<Objective> {
-    return this.http.delete<Objective>(this.url + '/delete' + obj.id);
+    return this.http.delete<Objective>(this.url + '/' + obj.id);
   }
 
   public updateObjective(obj: Objective): Observable<Objective> {
-    return this.http.put<Objective>(this.url + '/update', obj);
+    return this.http.put<Objective>(this.url + '/', obj);
+  }
+
+  public getObjectiveById(id: number): Observable<Objective> {
+    return this.http.get<Objective>(this.url + '/' + id);
   }
 }

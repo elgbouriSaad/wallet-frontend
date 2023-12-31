@@ -17,9 +17,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
-
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,13 +29,9 @@ import { AccountPageComponent } from './account-page/account-page.component';
     NavbarComponent,
     OverviewPageComponent,
     AccountPageComponent,
-    
-    
-    
- 
-
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
@@ -48,8 +42,6 @@ import { AccountPageComponent } from './account-page/account-page.component';
     TableModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
- 
- }
+export class AppModule {}
