@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
-
+import { TableModule } from 'primeng/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +44,8 @@ import { AccountPageComponent } from './account-page/account-page.component';
     AppRoutingModule,
     FormsModule,
     SidebarModule,
-    ChartModule
+    ChartModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
