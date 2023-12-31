@@ -12,7 +12,7 @@
             [globalFilterFields]="['code', 'name', 'price', 'Quantity']"
             >
             <ng-template pTemplate="caption">
-                <h1 style="text-align: center;">Accounts Management</h1>
+                <h1 style="text-align: center;">Categories Management</h1>
                 <div class="captionContainer">
                    
                 <div class="clearContainer">
@@ -26,7 +26,7 @@
                     </span>
                 </div>
                 <div class="newAccountContainer">
-                    <button pButton label="New account" class="p-button-outlined" icon="pi pi-plus" (click)="showDialog()" ></button>
+                    <button pButton label="New category" class="p-button-outlined" icon="pi pi-plus" (click)="showDialog()" ></button>
                 
                 </div>
                     
@@ -56,7 +56,7 @@
 </div>
 
 
-    <p-dialog class="dialog" header="New Account" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+    <p-dialog class="dialog" header="New Category" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
         <p class="m-0">
             <form class="formAccount">
                 <div class="p-fluid">
