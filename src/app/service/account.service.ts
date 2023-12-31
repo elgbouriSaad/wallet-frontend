@@ -32,6 +32,10 @@ export class AccountService {
   }
 
   public getAccountCategories(id: number): Observable<Objective[]> {
-    return this.http.get<Objective[]>(this.url + '/' + id + '/objectives');
+    return this.http.get<Objective[]>(this.url + '/' + id + '/objective');
+  }
+
+  public getAccountTransactions(id: number): Observable<Objective[]> {
+    return this.http.get<Objective[]>(this.url + '/' + id + '/transactions');
   }
 }
