@@ -2,7 +2,7 @@
   <div class="chartContainer">
     <div class="chartDoughnut">
       <h2>Account Overview</h2>
-      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+      <p-chart type="line" [data]="dataLine" [options]="optionsLine"></p-chart>
     </div>
     <div class="chartDoughnut">
       <h2>Monthly budget</h2>
@@ -46,6 +46,7 @@
             Amount <p-sortIcon field="amount"></p-sortIcon>
           </th>
           <th>Category</th>
+          <th>Type</th>
           <th>Account</th>
         </tr>
       </ng-template>
@@ -54,6 +55,14 @@
           <td>{{ transactions.id }}</td>
           <td>{{ transactions.amount }}</td>
           <td>{{ transactions.category.name }}</td>
+          <td>
+            <ng-container *ngIf="transactions.type; else expense">
+              <td>Income</td>
+            </ng-container>
+            <ng-template #expense>
+              <td>Expense</td>
+            </ng-template>
+          </td>
           <td>{{ transactions.account.name }}</td>
         </tr>
       </ng-template>
