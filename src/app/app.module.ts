@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
+import { ChartModule } from 'primeng/chart';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,8 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { NavbarComponent } from './navbar/navbar.component';
+import { OverviewPageComponent } from './overview-page/overview-page.component';
+import { AccountPageComponent } from './account-page/account-page.component';
 
 
 
@@ -26,6 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     SignupPageComponent,
     DashboardPageComponent,
     NavbarComponent,
+    OverviewPageComponent,
+    AccountPageComponent,
     
     
     
@@ -38,8 +43,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ButtonModule,
     AppRoutingModule,
     FormsModule,
-    SidebarModule
-    
+    SidebarModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
