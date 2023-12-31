@@ -20,20 +20,19 @@ export class OverviewPageComponent implements OnInit {
   ngOnInit() {
     this.httpservice.allTransactions().subscribe((data) => {
       this.transactions = data;
+      this.data = {
+        labels: this.getLabels(),
+        datasets: [
+          {
+            data: this.getAmounts(),
+            backgroundColor: this.getColors(),
+            hoverBackgroundColor: ['#bec2be'],
+          },
+        ],
+      };
     });
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-
-    this.data = {
-      labels: this.getLabels(),
-      datasets: [
-        {
-          data: this.getAmounts(),
-          backgroundColor: this.getColors(),
-          hoverBackgroundColor: ['#bec2be'],
-        },
-      ],
-    };
 
     this.options = {
       cutout: '60%',
@@ -46,6 +45,7 @@ export class OverviewPageComponent implements OnInit {
       },
     };
     console.log(this.data['datasets'][0]['data']);
+    console.log(this.data['labels']);
   }
   clear(table: Table) {
     table.clear();
@@ -59,6 +59,7 @@ export class OverviewPageComponent implements OnInit {
     if (this.transactions) {
       this.transactions.forEach((transaction) => {
         if (!categories.includes(transaction.category.name)) {
+          console.log(transaction.category.name);
           categories.push(transaction.category.name);
         }
       });
