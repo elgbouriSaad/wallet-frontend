@@ -1,0 +1,15 @@
+.pageContainer{
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+.tableContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+  .table{
+    width:60rem;
+  }
+  

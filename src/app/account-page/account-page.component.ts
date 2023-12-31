@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-account-page',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './account-page.component.scss'
 })
 export class AccountPageComponent {
+deleteAccount(arg0: any) {
+throw new Error('Method not implemented.');
+}
+updateAccount(_t30: any) {
+throw new Error('Method not implemented.');
+}
+addNewAccount() {
+throw new Error('Method not implemented.');
+}
+clear(_t10: Table) {
+throw new Error('Method not implemented.');
+}
+products = [
+{id: 1, name: 'aze', price: 100},
+];
 
 }

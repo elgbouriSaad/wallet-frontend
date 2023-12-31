@@ -33,6 +33,24 @@ products = [
   {id: 22, name: 'Product 22', price: 2200},
   {id: 23, name: 'Product 23', price: 2300},
   {id: 24, name: 'Product 24', price: 2400},
+  {id: 25, name: 'Product 25', price: 2500},
+  {id: 26, name: 'Product 26', price: 2600},
+  {id: 27, name: 'Product 27', price: 2700},
+  {id: 28, name: 'Product 28', price: 2800},
+  {id: 29, name: 'Product 29', price: 2900},
+  {id: 30, name: 'Product 30', price: 3000},
+  {id: 31, name: 'Product 31', price: 3100},
+  {id: 32, name: 'Product 32', price: 3200},
+  {id: 33, name: 'Product 33', price: 3300},
+  {id: 34, name: 'Product 34', price: 3400},
+  {id: 35, name: 'Product 35', price: 3500},
+  {id: 36, name: 'Product 36', price: 3600},
+  {id: 37, name: 'Product 37', price: 3700},
+  {id: 38, name: 'Product 38', price: 3800},
+  {id: 39, name: 'Product 39', price: 3900},
+  {id: 40, name: 'Product 40', price: 4000},
+
+
 
 ];
 first = 0;
@@ -70,29 +88,12 @@ ngOnInit() {
   };
   console.log(this.data['datasets'][0]['data']);
 }
-next() {
-  this.first = this.first + this.rows;
+clear(table: Table) {
+  table.clear();
 }
 
-prev() {
-  this.first = this.first - this.rows;
-}
 
-reset() {
-  this.first = 0;
-}
 
-pageChange(event: { first: number; rows: number; }) {
-  this.first = event.first;
-  this.rows = event.rows;
-}
 
-isLastPage(): boolean {
-  return this.products ? this.first === this.products.length - this.rows : true;
-}
-
-isFirstPage(): boolean {
-  return this.products ? this.first === 0 : true;
-}
 
 }
