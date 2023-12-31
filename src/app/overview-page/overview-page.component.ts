@@ -1,98 +1,108 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
+import { TransactionService } from '../service/transaction.service';
+import { Transaction } from '../entitiy/Transaction';
 
 @Component({
   selector: 'app-overview-page',
   templateUrl: './overview-page.component.html',
-  styleUrl: './overview-page.component.scss'
+  styleUrl: './overview-page.component.scss',
 })
-export class OverviewPageComponent implements OnInit{
+export class OverviewPageComponent implements OnInit {
+  constructor(private httpservice: TransactionService) {}
+  transactions!: Transaction[];
+  first = 0;
 
-products = [
-  {id: 1, name: 'aze', price: 100},
-  {id: 2, name: 'zae', price: 200},
-  {id: 3, name: 'Product 3', price: 300},
-  {id: 4, name: 'Product 4', price: 400},
-  {id: 5, name: 'Product 5', price: 500},
-  {id: 6, name: 'Product 6', price: 600},
-  {id: 7, name: 'Product 7', price: 700},
-  {id: 8, name: 'Product 8', price: 800},
-  {id: 9, name: 'Product 9', price: 900},
-  {id: 10, name: 'Product 10', price: 1000},
-  {id: 11, name: 'Product 11', price: 1100},
-  {id: 12, name: 'Product 12', price: 1200},
-  {id: 13, name: 'Product 13', price: 1300},
-  {id: 14, name: 'Product 14', price: 1400},
-  {id: 15, name: 'Product 15', price: 1500},
-  {id: 16, name: 'Product 16', price: 1600},
-  {id: 17, name: 'Product 17', price: 1700},
-  {id: 18, name: 'Product 18', price: 1800},
-  {id: 19, name: 'Product 19', price: 1900},
-  {id: 20, name: 'Product 20', price: 2000},
-  {id: 21, name: 'Product 21', price: 2100},
-  {id: 22, name: 'Product 22', price: 2200},
-  {id: 23, name: 'Product 23', price: 2300},
-  {id: 24, name: 'Product 24', price: 2400},
+  rows = 10;
+  data: any;
+  options: any;
 
-];
-first = 0;
-
-rows = 10;
-data: any;
-options: any;
-
-ngOnInit() {
-  const documentStyle = getComputedStyle(document.documentElement);
-  const textColor = documentStyle.getPropertyValue('--text-color');
-
-  this.data = {
-      labels: [],
-      datasets: [
+  ngOnInit() {
+    this.httpservice.allTransactions().subscribe((data) => {
+      this.transactions = data;
+      this.data = {
+        labels: this.getLabels(),
+        datasets: [
           {
-              data: [50],
-              backgroundColor: ["transparent"],
-              hoverBackgroundColor: ["#bec2be"]
-          }
-      ]
-  };
+            data: this.getAmounts(),
+            backgroundColor: this.getColors(),
+            hoverBackgroundColor: ['#bec2be'],
+          },
+        ],
+      };
+    });
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
 
-
-  this.options = {
+    this.options = {
       cutout: '60%',
       plugins: {
-          legend: {
-           
-              labels: {
-                  color: textColor
-              }
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+    };
+    console.log(this.data['datasets'][0]['data']);
+    console.log(this.data['labels']);
+  }
+  clear(table: Table) {
+    table.clear();
+  }
+
+  isFirstPage(): boolean {
+    return this.transactions ? this.first === 0 : true;
+  }
+  getLabels(): string[] {
+    const categories: string[] = [];
+    if (this.transactions) {
+      this.transactions.forEach((transaction) => {
+        if (!categories.includes(transaction.category.name)) {
+          console.log(transaction.category.name);
+          categories.push(transaction.category.name);
+        }
+      });
+    }
+    return categories;
+  }
+
+  getTotalAmountByLabel(label: string): number {
+    let totalAmount = 0;
+    if (this.transactions) {
+      this.transactions.forEach((transaction) => {
+        if (transaction.category.name === label) {
+          totalAmount += transaction.type
+            ? transaction.amount
+            : -transaction.amount;
+        }
+      });
+    }
+    return totalAmount;
+  }
+
+  // create a list of amounts that for each label, get the total amount according to the previous function
+  getAmounts(): number[] {
+    const amounts: number[] = [];
+    if (this.transactions) {
+      this.getLabels().forEach((label) => {
+        amounts.push(this.getTotalAmountByLabel(label));
+      });
+    }
+    return amounts;
+  }
+  //create a list that finds the corresponding category for each label and creates a list of colors
+  getColors(): string[] {
+    const colors: string[] = [];
+    if (this.transactions) {
+      this.getLabels().forEach((label) => {
+        this.transactions.forEach((transaction) => {
+          if (transaction.category.name === label) {
+            colors.push(transaction.category.color);
           }
-      }
-  };
-  console.log(this.data['datasets'][0]['data']);
-}
-next() {
-  this.first = this.first + this.rows;
-}
-
-prev() {
-  this.first = this.first - this.rows;
-}
-
-reset() {
-  this.first = 0;
-}
-
-pageChange(event: { first: number; rows: number; }) {
-  this.first = event.first;
-  this.rows = event.rows;
-}
-
-isLastPage(): boolean {
-  return this.products ? this.first === this.products.length - this.rows : true;
-}
-
-isFirstPage(): boolean {
-  return this.products ? this.first === 0 : true;
-}
-
+        });
+      });
+    }
+    return colors;
+  }
 }

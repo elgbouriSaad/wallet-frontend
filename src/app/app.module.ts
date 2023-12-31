@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     OverviewPageComponent,
     AccountPageComponent,
+    CategoryPageComponent,
   ],
   imports: [
     HttpClientModule,
@@ -39,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     SidebarModule,
     ChartModule,
-    TableModule
+    TableModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
