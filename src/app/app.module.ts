@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
@@ -16,7 +17,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
-import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 @NgModule({
   declarations: [
@@ -28,18 +31,24 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     OverviewPageComponent,
     AccountPageComponent,
+    
+    
+    
+ 
+
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
     AppRoutingModule,
     FormsModule,
     SidebarModule,
-    ChartModule,
+    ChartModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+ 
+ }
