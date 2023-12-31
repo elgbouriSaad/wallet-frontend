@@ -25,11 +25,11 @@ export class OverviewPageComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
 
     this.data = {
-      labels: [],
+      labels: ["expenses","income"],
       datasets: [
         {
-          data: [50],
-          backgroundColor: ['transparent'],
+          data: [50,80],
+          backgroundColor: ['white',"grey"],
           hoverBackgroundColor: ['#bec2be'],
         },
       ],
