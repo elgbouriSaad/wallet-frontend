@@ -20,6 +20,7 @@ import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CategoryPageComponent } from './category-page/category-page.component';
     OverviewPageComponent,
     AccountPageComponent,
     CategoryPageComponent,
+    TransactionPageComponent,
   ],
   imports: [
     HttpClientModule,
