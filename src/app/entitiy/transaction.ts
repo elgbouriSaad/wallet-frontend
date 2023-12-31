@@ -1,5 +1,5 @@
 import { Account } from './account';
-import { Category } from './category';
+import { Category } from './Category';
 
 export class Transaction {
   constructor(

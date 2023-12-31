@@ -1,0 +1,72 @@
+
+.chartDoughnut{
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    &:hover{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.645);
+    }
+}
+
+
+.chartContainer{
+    display: grid;
+    grid-template-columns: 500px 500px;
+    grid-gap: 50px;
+    place-content: center;
+    margin-top: 50px;
+}
+
+
+.table{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+
+}
+
+.table table {
+  
+    background-color: white;
+    border-collapse: collapse;
+    width: 89%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table table td, .table table th {
+    border-right: 2px solid #362f4b;
+    padding: 10px;
+  }
+   
+  .table table tr:nth-child(even){
+    background-color: #fafafa;
+    color: rgb(0, 0, 0);
+}
+  .table table tr:nth-child(odd){
+    background-color: #362f4b64;
+    color: rgb(0, 0, 0);
+}
+
+  
+  .table table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #362f4b;
+    color: rgb(255, 255, 255);
+
+  }
+.pageContainer{
+    display: grid;
+    grid-template-columns: 1fr ;
+    place-content: center;
+}
