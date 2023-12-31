@@ -7,6 +7,10 @@ import { Table } from 'primeng/table';
   styleUrl: './account-page.component.scss'
 })
 export class AccountPageComponent {
+  visible: boolean = false;
+  showDialog() {
+    this.visible = true;
+}
 deleteAccount(arg0: any) {
 throw new Error('Method not implemented.');
 }
