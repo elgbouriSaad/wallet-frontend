@@ -1,37 +1,53 @@
 <div class="pageContainer">
-  <div class="chartContainer">
-    <div class="chartDoughnut">
-      <h2>Account Overview</h2>
-      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    <div class="chartContainer">
+        <div class="chartDoughnut" >
+            <h2>Account Overview</h2>
+            <p-chart type="line" [data]="data" [options]="options"></p-chart>
+        </div>
+        <div class="chartDoughnut" >
+            <h2>Monthly budget</h2>
+            <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+        </div>
     </div>
-    <div class="chartDoughnut">
-      <h2>Monthly budget</h2>
-      <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+    
+    <div class="table">
+        <p-table 
+        #dt1
+            [paginator]="true"
+            [rows]="5"
+            [rowsPerPageOptions]="[5, 10, 25]" 
+            (onPage)="pageChange($event)" 
+            [value]="products" 
+            styleClass="p-datatable-striped" 
+            [tableStyle]="{'min-width': '50rem'}"
+            [globalFilterFields]="['code', 'name', 'price', 'Quantity']"
+            >
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                   
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                        
+                  
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="code" >Code</th>
+                    <th pSortableColumn="name"  >Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{product.code}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.quantity}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+     
     </div>
-  </div>
-  <div class="table">
-    <table>
-      <tr>
-        <th>Account</th>
-        <th>Transaction</th>
-        <th>Category</th>
-        <th>Date</th>
-        <th>Amount</th>
-      </tr>
-      <tr>
-        <td>Account 1</td>
-        <td>Transaction 1</td>
-        <td>Category 1</td>
-        <td>Date 1</td>
-        <td>Amount 1</td>
-      </tr>
-      <tr>
-        <td>Account 2</td>
-        <td>Transaction 2</td>
-        <td>Category 2</td>
-        <td>Date 2</td>
-        <td>Amount 2</td>
-      </tr>
-    </table>
-  </div>
 </div>

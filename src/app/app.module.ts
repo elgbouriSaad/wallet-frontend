@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PrimeIcons } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
+import { TableModule } from 'primeng/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     SidebarModule,
     ChartModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent],
