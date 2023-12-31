@@ -1,5 +1,5 @@
 import { Objective } from './Objective';
-import { Transaction } from './transaction';
+import { Transaction } from './Transaction';
 
 export class Account {
   constructor(

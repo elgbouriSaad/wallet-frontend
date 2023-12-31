@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
 import { TransactionService } from '../service/transaction.service';
-import { Transaction } from '../entitiy/transaction';
+import { Transaction } from '../entitiy/Transaction';
 
 @Component({
   selector: 'app-overview-page',

@@ -1,4 +1,4 @@
-import { Account } from './Account';
+import { Account } from './account';
 import { Category } from './Category';
 
 export class Transaction {
