@@ -7,6 +7,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 const routes: Routes = [
 { path: '', redirectTo: '/home', pathMatch: 'full' },
 { path: 'home', component: HomePageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'overview', component: OverviewPageComponent },
   { path: 'account', component: AccountPageComponent },
   { path: 'category', component: CategoryPageComponent },
+  { path: 'transaction', component: TransactionPageComponent },
   // Add more child routes as needed
 ], },
 
