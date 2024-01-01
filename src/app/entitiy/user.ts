@@ -12,6 +12,6 @@ export class User {
     public dateSalary: Date,
     public salary: number,
     public accounts: Account[],
-    public setting: Setting,
+    public setting?: Setting,
   ) {}
 }

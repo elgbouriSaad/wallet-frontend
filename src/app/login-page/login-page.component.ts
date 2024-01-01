@@ -37,7 +37,7 @@ export class LoginPageComponent {
     console.log('password: ' + this.password);
     if (user) {
       console.log('Email and password pair exist in users');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard/overview']);
     } else {
       console.log('Email and password pair do not exist in users');
     }
