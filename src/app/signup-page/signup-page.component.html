@@ -59,6 +59,7 @@
           <input
             class="inputText"
             type="text"
+            name="firstName"
             placeholder="First Name"
             [(ngModel)]="firstName"
             [ngModelOptions]="{ standalone: true }"
@@ -69,6 +70,7 @@
           <input
             class="inputText"
             type="text"
+            name="lastName"
             placeholder="Last Name"
             [(ngModel)]="lastName"
             [ngModelOptions]="{ standalone: true }"
@@ -79,6 +81,7 @@
           <input
             class="inputText"
             type="email"
+            name="email"
             placeholder="Email adress"
             [(ngModel)]="email"
             [ngModelOptions]="{ standalone: true }"
@@ -89,6 +92,7 @@
           <input
             class="inputText"
             type="password"
+            name="password"
             placeholder="Password"
             [(ngModel)]="password"
             [ngModelOptions]="{ standalone: true }"
@@ -99,6 +103,7 @@
           <input
             class="inputText"
             type="number"
+            name="salary"
             placeholder="Salary"
             [(ngModel)]="salary"
             [ngModelOptions]="{ standalone: true }"
@@ -110,6 +115,7 @@
           <input
             class="inputText"
             type="number"
+            name="amount"
             placeholder="Current Savings"
             [(ngModel)]="amount"
             [ngModelOptions]="{ standalone: true }"
@@ -120,7 +126,7 @@
           <p href="#">Already have an account? <a href="/login">Sign in</a></p>
         </div>
         <div class="inputBox">
-          <input class="submitButton" type="submit" value="Login" />
+          <input name="register" class="submitButton" type="submit" value="Register" />
         </div>
       </form>
     </div>
