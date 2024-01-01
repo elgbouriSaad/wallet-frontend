@@ -7,7 +7,7 @@ export class Transaction {
     public amount: number,
     public type: boolean,
     public date: Date,
-    public category: Category,
     public account: Account,
+    public category: Category,
   ) {}
 }

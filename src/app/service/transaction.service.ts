@@ -23,7 +23,7 @@ export class TransactionService {
   }
 
   public updateTransaction(obj: Transaction): Observable<Transaction> {
-    return this.http.put<Transaction>(this.url + '/', obj);
+    return this.http.put<Transaction>(this.url + '/' + obj.id, obj);
   }
 
   public getTransactionById(id: number): Observable<Transaction> {

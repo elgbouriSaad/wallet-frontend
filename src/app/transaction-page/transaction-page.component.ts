@@ -1,94 +1,134 @@
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
 import { Transaction } from '../entitiy/Transaction';
+import { Category } from '../entitiy/Category';
+import { Account } from '../entitiy/Account';
+import { TransactionService } from '../service/transaction.service';
+import { CategoryService } from '../service/category.service';
+import { AccountService } from '../service/account.service';
 
 @Component({
   selector: 'app-transaction-page',
   templateUrl: './transaction-page.component.html',
-  styleUrl: './transaction-page.component.scss'
+  styleUrl: './transaction-page.component.scss',
 })
 export class TransactionPageComponent {
+  transactions!: Transaction[];
+  categories!: Category[];
+  accounts!: Account[];
+
   checked: boolean = false;
   checked2: boolean = false;
+  categoryDropdown!: any[];
+  accountDropdown!: any[];
+  transactionObject!: Transaction;
+  constructor(
+    private httpTransactionService: TransactionService,
+    private httpCategoryService: CategoryService,
+    private httpAccountService: AccountService,
+  ) {}
+  ngOnInit() {
+    this.httpTransactionService.allTransactions().subscribe((data) => {
+      this.transactions = data;
+    });
+    this.httpCategoryService.allCategories().subscribe((data) => {
+      this.categories = data;
+      this.categoryDropdown = this.categories.map((category) => category);
+      console.log(this.categoryDropdown);
+    });
+    this.httpAccountService.allAccounts().subscribe((data) => {
+      this.accounts = data;
+      this.accountDropdown = this.accounts.map((account) => account);
+    });
+    console.log('fshd');
+  }
   account = {
     id: 0,
     name: '',
     balance: 0,
   };
-  cities  = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'aze', code: 'PRS' }
-];
-date: any;
-visible2!: boolean;
+  date: any;
+  visible2!: boolean;
   saveAccount() {
     console.log(this.checked);
     console.log(this.checked2);
-    }
-    hideDialog() {
+    console.log(this.transaction);
+    this.httpTransactionService
+      .addTransaction(this.transaction)
+      .subscribe((data) => {
+        console.log(data);
+        console.log(this.transaction);
+        data.date = new Date(data.date);
+        data.account = this.transaction.account;
+        this.transactions.push(data);
+      });
+  }
+  hideDialog() {
     throw new Error('Method not implemented.');
-    }
-      visible: boolean = false;
-    products = [
-      {id: 1, name: 'aze', price: 100},
-      ];
-    transaction = {
-      "amout": 0,
-      "category": "",
-      "account": "",
-      "date": "",
-      "type": "",
+  }
+  visible: boolean = false;
+
+  transaction = {
+    id: 0,
+    amount: 0,
+    category: new Category(0, '', ''),
+    account: new Account(0, '', 0),
+    date: new Date(),
+    type: true,
+  };
+  showDialog() {
+    this.visible = true;
+    this.transaction = {
+      id: 0,
+      amount: 0,
+      category: new Category(0, '', ''),
+      account: new Account(0, '', 0),
+      date: new Date(),
+      type: true,
     };
-      showDialog() {
-        this.visible = true;
-        this.transaction = {
-          "amout": 0,
-          "category": "",
-          "account": "",
-          "date": "",
-          "type": "",
-        };
-    }
-    showUpdateDialog() {
- 
-      this.visible2 = true;
-    }
-    deleteAccount(arg0: any) {
+  }
+  showUpdateDialog() {
+    this.visible2 = true;
+  }
+  deleteAccount(arg: Transaction) {
+    this.httpTransactionService.deleteTransaction(arg).subscribe((data) => {
+      this.transactions = this.transactions.filter(
+        (transaction) => transaction.id !== arg.id,
+      );
+    });
+  }
+  updateAccount(_t30: any) {
+    this.httpTransactionService.updateTransaction(this.transaction).subscribe(
+      (data) => {
+        this.transactions = this.transactions.filter(
+          (transaction) => transaction.id !== this.transaction.id,
+        );
+        this.transactions.push(data);
+      },
+      (error) => {
+        console.log(error);
+      },
+    ); // TO TEST
+  }
+  addNewAccount() {
     throw new Error('Method not implemented.');
-    }
-    updateAccount(_t30: any) {
+  }
+  clear(_t10: Table) {
     throw new Error('Method not implemented.');
-    }
-    addNewAccount() {
-    throw new Error('Method not implemented.');
-    }
-    clear(_t10: Table) {
-    throw new Error('Method not implemented.');
-    }
-    
+  }
 
-
-    isChecked(){
-      if(this.checked == true){
-        this.checked = false;
-      }else{
-        this.checked = true;
-      }
+  isChecked() {
+    if (this.checked == true) {
+      this.checked = false;
+    } else {
+      this.checked = true;
     }
-    isChecked2(){
-      if(this.checked2 == true){
-        this.checked2 = false;
-      }else{
-        this.checked2 = true;
-      }
+  }
+  isChecked2() {
+    if (this.checked2 == true) {
+      this.checked2 = false;
+    } else {
+      this.checked2 = true;
     }
+  }
 }
