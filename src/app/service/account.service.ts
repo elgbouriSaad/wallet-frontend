@@ -23,7 +23,7 @@ export class AccountService {
   }
 
   public updateAccount(acc: Account): Observable<Account> {
-    return this.http.put<Account>(this.url + '/', acc);
+    return this.http.put<Account>(this.url + '/' + acc.id, acc);
   }
 
   public getAccountById(id: number): Observable<Account> {
