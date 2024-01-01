@@ -25,10 +25,7 @@
                         <input pInputText type="text"  (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
                     </span>
                 </div>
-                <div class="newAccountContainer">
-                    <button pButton label="New category" class="p-button-outlined" icon="pi pi-plus" (click)="showDialog()" ></button>
-                
-                </div>
+               
                     
 
                   
@@ -39,7 +36,6 @@
                     <th pSortableColumn="code" >Id</th>
                     <th pSortableColumn="name"  >Name <p-sortIcon field="name"></p-sortIcon></th>
                     <th>Balance</th>
-                    <th>Action</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-product>
@@ -47,7 +43,6 @@
                     <td>{{product.code}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.category}}</td>
-                    <td class="action"> <i style="color:rgb(183, 137, 226);" class="pi pi-pencil" (click)="updateAccount(product)" ></i>    <i style="color:rgba(237, 44, 44, 0.866);" class="pi pi-trash" (click)="deleteAccount(product.id)"></i></td>
                 </tr>
             </ng-template>
         </p-table>
@@ -55,28 +50,3 @@
     </div>
 </div>
 
-
-    <p-dialog class="dialog" header="New Category" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-            <form class="formAccount">
-                <div class="p-fluid">
-                    <div class="p-field">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" pInputText [(ngModel)]="account.name" name="name" required autofocus>
-                    </div>
-                    <div class="p-field">
-                        <label for="category">Category</label>
-                        <input id="category" type="text" pInputText [(ngModel)]="account.category" name="category" required autofocus>
-                    </div>
-                    <div class="p-field">
-                        <label for="balance">Balance</label>
-                        <input id="balance" type="text" pInputText [(ngModel)]="account.balance" name="balance" required autofocus>
-                    </div>
-                </div>
-              
-               </form>
-               <p-footer>
-                <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="hideDialog()" class="p-button-text"></button>
-                <button type="submit" pButton icon="pi pi-check" label="Save" (click)="saveAccount()" class="p-button-text"></button>
-            </p-footer>
-    </p-dialog>
