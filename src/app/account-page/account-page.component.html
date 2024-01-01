@@ -81,7 +81,7 @@
 
 <p-dialog
   class="dialog"
-  header= "New Account"
+  header="New Account"
   [(visible)]="visible"
   [modal]="true"
   [draggable]="false"
@@ -106,7 +106,7 @@
         <label for="category">Balance</label>
         <input
           id="category"
-          type="text"
+          type="number"
           pInputText
           [(ngModel)]="account.balance"
           name="category"
@@ -114,7 +114,6 @@
           autofocus
         />
       </div>
-      
     </div>
   </form>
   <p-footer>
@@ -139,7 +138,7 @@
 
 <p-dialog
   class="dialog"
-  header= "Update Account"
+  header="Update Account"
   [(visible)]="visible2"
   [modal]="true"
   [draggable]="false"
@@ -172,7 +171,6 @@
           autofocus
         />
       </div>
-      
     </div>
   </form>
   <p-footer>

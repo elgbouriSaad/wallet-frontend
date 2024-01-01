@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { Setting } from './Setting';
+import { Setting } from './setting';
 
 export class User {
   constructor(
