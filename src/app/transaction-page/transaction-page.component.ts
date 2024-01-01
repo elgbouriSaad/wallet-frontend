@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
+import { Transaction } from '../entitiy/Transaction';
 
 @Component({
   selector: 'app-transaction-page',
@@ -8,15 +9,12 @@ import { Table } from 'primeng/table';
 })
 export class TransactionPageComponent {
   checked: boolean = false;
-
-
-  citiess  = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-];
+  checked2: boolean = false;
+  account = {
+    id: 0,
+    name: '',
+    balance: 0,
+  };
   cities  = [
     { name: 'New York', code: 'NY' },
     { name: 'Rome', code: 'RM' },
@@ -31,8 +29,10 @@ export class TransactionPageComponent {
     { name: 'aze', code: 'PRS' }
 ];
 date: any;
+visible2!: boolean;
   saveAccount() {
     console.log(this.checked);
+    console.log(this.checked2);
     }
     hideDialog() {
     throw new Error('Method not implemented.');
@@ -42,14 +42,25 @@ date: any;
       {id: 1, name: 'aze', price: 100},
       ];
     transaction = {
-      "amout": 1,
-      "category": "John Doe",
-      "account": "Business",
-      "date": "$3,200.00",
-      "type": "$3,200.00",
+      "amout": 0,
+      "category": "",
+      "account": "",
+      "date": "",
+      "type": "",
     };
       showDialog() {
         this.visible = true;
+        this.transaction = {
+          "amout": 0,
+          "category": "",
+          "account": "",
+          "date": "",
+          "type": "",
+        };
+    }
+    showUpdateDialog() {
+ 
+      this.visible2 = true;
     }
     deleteAccount(arg0: any) {
     throw new Error('Method not implemented.');
@@ -71,6 +82,13 @@ date: any;
         this.checked = false;
       }else{
         this.checked = true;
+      }
+    }
+    isChecked2(){
+      if(this.checked2 == true){
+        this.checked2 = false;
+      }else{
+        this.checked2 = true;
       }
     }
 }

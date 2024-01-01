@@ -30,8 +30,6 @@
                 
                 </div>
                     
-
-                  
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -42,12 +40,12 @@
                     <th>Action</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
+            <ng-template pTemplate="body" let-transaction>
                 <tr>
-                    <td>{{product.code}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.category}}</td>
-                    <td class="action"> <i style="color:rgb(183, 137, 226);" class="pi pi-pencil" (click)="updateAccount(product)" ></i>    <i style="color:rgba(237, 44, 44, 0.866);" class="pi pi-trash" (click)="deleteAccount(product.id)"></i></td>
+                    <td>{{transaction.code}}</td>
+                    <td>{{transaction.name}}</td>
+                    <td>{{transaction.category}}</td>
+                    <td class="action"> <i style="color:rgb(183, 137, 226);" class="pi pi-pencil" (click)="showUpdateDialog()" ></i>    <i style="color:rgba(237, 44, 44, 0.866);" class="pi pi-trash" (click)="deleteAccount(transaction.id)"></i></td>
                 </tr>
             </ng-template>
         </p-table>
@@ -73,7 +71,7 @@
                     </div>
                     <div class="p-field">
                         <label >Type</label>
-                        <p-toggleButton  (click)="isChecked()" [(ngModel)]="checked" onLabel="Yes" offLabel="No"></p-toggleButton>
+                        <p-toggleButton  [(ngModel)]="checked" onLabel="Yes" offLabel="No"></p-toggleButton>
                     </div>
                  
                    
@@ -88,3 +86,39 @@
                 <button type="submit" pButton icon="pi pi-check" label="Save" (click)="saveAccount()" class="p-button-text"></button>
             </p-footer>
     </p-dialog>
+
+    <p-dialog class="dialog" header="Update Transaction" [(visible)]="visible2" [modal]="true"  [style]="{ 'width': '470px', 'height': '550px' }">
+       
+        <div class="p-fluid formAccount">
+                <div class="p-field">
+                    <label >Amout</label>
+                    <input   type="number" pInputText [(ngModel)]="transaction.amout" name="amout" required autofocus>
+                </div>
+                <div class="p-field">
+                    <label >Account</label>
+                    <p-dropdown  [options]="cities" optionLabel="name" placeholder="Select a City"></p-dropdown>
+                </div>
+                <div class="p-field">
+                    <label >Category</label>
+                    <p-dropdown  [options]="cities" [(ngModel)]="transaction.category" optionLabel="name" [showClear]="true" placeholder="Select a City"></p-dropdown>
+                </div>
+                <div class="p-field">
+                    <label >Type</label>
+                 
+                        <p-toggleButton   [(ngModel)]="checked2" onLabel="Yes" offLabel="No"></p-toggleButton>
+
+                   
+                </div>
+             
+               
+                <div class="p-field">
+                    <label >Date</label>
+                    <p-calendar   [(ngModel)]="date"></p-calendar>
+                </div>
+          
+           </div>
+           <p-footer>
+            <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="hideDialog()" class="p-button-text"></button>
+            <button type="submit" pButton icon="pi pi-check" label="Save" (click)="saveAccount()" class="p-button-text"></button>
+        </p-footer>
+</p-dialog>
