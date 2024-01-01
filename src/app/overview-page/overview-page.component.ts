@@ -15,21 +15,37 @@ export class OverviewPageComponent implements OnInit {
   first = 0;
 
   rows = 10;
-  data: any;
+  expensesData: any;
+  incomeData: any;
   options: any;
 
   dataLine: any;
   optionsLine: any;
 
+  stateOptions: any[] = [
+    { label: 'Expenses', value: 'off' },
+    { label: 'Income', value: 'on' },
+  ];
+  value: string = 'off';
   ngOnInit() {
     this.httpservice.allTransactions().subscribe((data) => {
       this.transactions = data;
-      this.data = {
+      this.expensesData = {
         labels: this.getLastMonthExpensesLabels(),
         datasets: [
           {
             data: this.getLastMonthTotalExpensesAmountsByLabel(),
             backgroundColor: this.getColorsOfLastMonthExpenses(),
+            hoverBackgroundColor: ['#bec2be'],
+          },
+        ],
+      };
+      this.incomeData = {
+        labels: this.getLastMonthIncomeLabels(),
+        datasets: [
+          {
+            data: this.getLastMonthTotalIncomeAmountsByLabel(),
+            backgroundColor: this.getColorsOfLastMonthIncome(),
             hoverBackgroundColor: ['#bec2be'],
           },
         ],
@@ -56,6 +72,7 @@ export class OverviewPageComponent implements OnInit {
         ],
       };
     });
+
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue(
@@ -65,7 +82,7 @@ export class OverviewPageComponent implements OnInit {
 
     this.options = {
       cutout: '60%',
-      aspectRatio: 1.2,
+      aspectRatio: 1.3,
       plugins: {
         legend: {
           labels: {
@@ -106,18 +123,6 @@ export class OverviewPageComponent implements OnInit {
             color: surfaceBorder,
           },
         },
-        // y1: {
-        //   type: 'linear',
-        //   display: true,
-        //   position: 'right',
-        //   ticks: {
-        //     color: '#ff0000',
-        //   },
-        //   grid: {
-        //     drawOnChartArea: false,
-        //     color: surfaceBorder,
-        //   },
-        // },
       },
     };
   }
@@ -128,61 +133,8 @@ export class OverviewPageComponent implements OnInit {
   isFirstPage(): boolean {
     return this.transactions ? this.first === 0 : true;
   }
-  // getLabels(): string[] {
-  //   const categories: string[] = [];
-  //   if (this.transactions) {
-  //     this.transactions.forEach((transaction) => {
-  //       if (!categories.includes(transaction.category.name)) {
-  //         categories.push(transaction.category.name);
-  //       }
-  //     });
-  //   }
-  //   return categories;
-  // }
 
-  // getTotalAmountByLabel(label: string): number {
-  //   let totalAmount = 0;
-  //   if (this.transactions) {
-  //     this.transactions.forEach((transaction) => {
-  //       if (transaction.category.name === label) {
-  //         totalAmount += transaction.type
-  //           ? transaction.amount
-  //           : -transaction.amount;
-  //       }
-  //     });
-  //   }
-  //   return totalAmount;
-  // }
-
-  // // create a list of amounts that for each label, get the total amount according to the previous function
-  // getAmounts(): number[] {
-  //   const amounts: number[] = [];
-  //   if (this.transactions) {
-  //     this.getLabels().forEach((label) => {
-  //       amounts.push(this.getTotalAmountByLabel(label));
-  //     });
-  //   }
-  //   return amounts;
-  // }
-
-  //create a list that finds the corresponding category for each label and creates a list of colors
-  // getColors(): string[] {
-  //   const colors: string[] = [];
-  //   if (this.transactions) {
-  //     this.getLabels().forEach((label) => {
-  //       this.transactions.forEach((transaction) => {
-  //         if (
-  //           transaction.category.name === label &&
-  //           colors.includes(transaction.category.color) === false
-  //         ) {
-  //           colors.push(transaction.category.color);
-  //         }
-  //       });
-  //     });
-  //   }
-  //   return colors;
-  // }
-
+  /////////////// Expenses
   getLastMonthExpensesTransactions(): Transaction[] {
     const lastMonth = new Date();
     lastMonth.setMonth(lastMonth.getMonth() - 1);
@@ -232,6 +184,59 @@ export class OverviewPageComponent implements OnInit {
     console.log(colors);
     return colors;
   }
+  /////////////// Income
+  getLastMonthIncomeTransactions(): Transaction[] {
+    const lastMonth = new Date();
+    lastMonth.setMonth(lastMonth.getMonth() - 1);
+
+    return this.transactions.filter(
+      (transaction) =>
+        new Date(transaction.date) >= lastMonth && transaction.type === true,
+    );
+  }
+
+  getLastMonthIncomeLabels(): string[] {
+    const labels: string[] = [];
+    this.getLastMonthIncomeTransactions().forEach((transaction) => {
+      if (!labels.includes(transaction.category.name)) {
+        labels.push(transaction.category.name);
+      }
+    });
+    console.log(labels);
+    return labels;
+  }
+  getLastMonthTotalIncomeAmountsByLabel(): number[] {
+    const amounts: number[] = [];
+    this.getLastMonthIncomeLabels().forEach((label) => {
+      let totalAmount = 0;
+      this.getLastMonthIncomeTransactions().forEach((transaction) => {
+        if (transaction.category.name === label) {
+          totalAmount += transaction.amount;
+        }
+      });
+      amounts.push(Math.abs(totalAmount));
+    });
+    console.log(amounts);
+    return amounts;
+  }
+  getColorsOfLastMonthIncome(): string[] {
+    const colors: string[] = [];
+    this.getLastMonthIncomeLabels().forEach((label) => {
+      this.getLastMonthIncomeTransactions().forEach((transaction) => {
+        if (
+          transaction.category.name === label &&
+          colors.includes(transaction.category.color) === false
+        ) {
+          console.log(transaction.category.color);
+          colors.push(transaction.category.color);
+        }
+      });
+    });
+    console.log(colors);
+    return colors;
+  }
+
+  ///////////// Line Chart
   getTotalExpenseByDayLastWeek(): number[] {
     const result: number[] = Array(7).fill(0);
 

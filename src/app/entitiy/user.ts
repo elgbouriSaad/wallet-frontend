@@ -1,4 +1,4 @@
-import { Account } from './account';
+import { Account } from './Account';
 import { Setting } from './Setting';
 
 export class User {
