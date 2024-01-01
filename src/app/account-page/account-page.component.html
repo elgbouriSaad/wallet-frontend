@@ -65,7 +65,7 @@
             <i
               style="color: rgb(183, 137, 226)"
               class="pi pi-pencil"
-              (click)="updateAccount(account)"
+              (click)="showUpdateDialog(account)"
             ></i>
             <i
               style="color: rgba(237, 44, 44, 0.866)"
@@ -81,7 +81,7 @@
 
 <p-dialog
   class="dialog"
-  header="New Account"
+  header= "New Account"
   [(visible)]="visible"
   [modal]="true"
   [draggable]="false"
@@ -103,29 +103,18 @@
         />
       </div>
       <div class="p-field">
-        <label for="category">Category</label>
+        <label for="category">Balance</label>
         <input
           id="category"
           type="text"
           pInputText
-          [(ngModel)]="account.category"
+          [(ngModel)]="account.balance"
           name="category"
           required
           autofocus
         />
       </div>
-      <div class="p-field">
-        <label for="balance">Balance</label>
-        <input
-          id="balance"
-          type="text"
-          pInputText
-          [(ngModel)]="account.balance"
-          name="balance"
-          required
-          autofocus
-        />
-      </div>
+      
     </div>
   </form>
   <p-footer>
@@ -143,6 +132,64 @@
       icon="pi pi-check"
       label="Save"
       (click)="saveAccount()"
+      class="p-button-text"
+    ></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog
+  class="dialog"
+  header= "Update Account"
+  [(visible)]="visible2"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0"></p>
+  <form class="formAccount">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="account.name"
+          name="name"
+          required
+          autofocus
+        />
+      </div>
+      <div class="p-field">
+        <label for="category">Balance</label>
+        <input
+          id="category"
+          type="text"
+          pInputText
+          [(ngModel)]="account.balance"
+          name="category"
+          required
+          autofocus
+        />
+      </div>
+      
+    </div>
+  </form>
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Cancel"
+      (click)="hideDialog()"
+      class="p-button-text"
+    ></button>
+    <button
+      type="submit"
+      pButton
+      icon="pi pi-check"
+      label="Save"
+      (click)="updateAccount()"
       class="p-button-text"
     ></button>
   </p-footer>
