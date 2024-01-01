@@ -39,6 +39,7 @@
             <button
               pButton
               label="New account"
+              name="newaccount"
               class="p-button-outlined"
               icon="pi pi-plus"
               (click)="showDialog()"
@@ -65,11 +66,13 @@
             <i
               style="color: rgb(183, 137, 226)"
               class="pi pi-pencil"
+              name="updateaccount"
               (click)="showUpdateDialog(account)"
             ></i>
             <i
               style="color: rgba(237, 44, 44, 0.866)"
               class="pi pi-trash"
+              name="deleteaccount"
               (click)="showDeleteDialog(account.id)"
             ></i>
           </td>
