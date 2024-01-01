@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../entitiy/Account';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class AccountService {
     return this.http.post<Account>(this.url + '/', acc);
   }
 
-  public deleteAccount(acc: Account): Observable<Account> {
-    return this.http.delete<Account>(this.url + '/' + acc.id);
+  public deleteAccount(id: number): Observable<Account> {
+    return this.http.delete<Account>(this.url + '/' + id);
   }
 
   public updateAccount(acc: Account): Observable<Account> {
@@ -29,5 +29,4 @@ export class AccountService {
   public getAccountById(id: number): Observable<Account> {
     return this.http.get<Account>(this.url + '/' + id);
   }
-
 }

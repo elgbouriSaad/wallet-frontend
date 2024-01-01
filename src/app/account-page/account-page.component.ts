@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
 import { Account } from '../entitiy/Account';
 import { AccountService } from '../service/account.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-account-page',
@@ -12,6 +13,7 @@ export class AccountPageComponent {
   accounts!: Account[];
   header = 'New Account';
   constructor(private httpservice: AccountService) {}
+
   ngOnInit() {
     this.httpservice.allAccounts().subscribe((data) => {
       this.accounts = data;
@@ -54,8 +56,17 @@ export class AccountPageComponent {
     this.account.name = acc.name;
     this.account.balance = acc.balance;
   }
-  deleteAccount(id: number) {}
-
+  deleteAccount(id: number) {
+    console.log('deleteAccount');
+    this.httpservice.deleteAccount(id).subscribe(
+      (data) => {
+        this.accounts = this.accounts.filter((a) => a.id != id);
+      },
+      (error) => {
+        console.log('Error deleting account:', error);
+      },
+    );
+  }
   updateAccount() {
     console.log('updateAccount');
     console.log(this.account);
