@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Account } from '../entitiy/Account';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Objective } from '../entitiy/Objective';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +30,4 @@ export class AccountService {
     return this.http.get<Account>(this.url + '/' + id);
   }
 
-  public getAccountCategories(id: number): Observable<Objective[]> {
-    return this.http.get<Objective[]>(this.url + '/' + id + '/objective');
-  }
-
-  public getAccountTransactions(id: number): Observable<Objective[]> {
-    return this.http.get<Objective[]>(this.url + '/' + id + '/transactions');
-  }
 }

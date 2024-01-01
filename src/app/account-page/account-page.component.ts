@@ -37,7 +37,6 @@ export class AccountPageComponent {
     id: 0,
     name: '',
     balance: 0,
-    objective: [],
   };
   showDialog() {
     this.header = 'New Account';
@@ -46,7 +45,6 @@ export class AccountPageComponent {
       id: 0,
       name: '',
       balance: 0,
-      objective: [],
     };
   }
   showUpdateDialog(acc: Account) {
@@ -57,6 +55,7 @@ export class AccountPageComponent {
     this.account.balance = acc.balance;
   }
   deleteAccount(id: number) {}
+
   updateAccount() {
     console.log('updateAccount');
     console.log(this.account);
