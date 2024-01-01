@@ -2,10 +2,10 @@
   <div class="chartContainer">
     <div class="chartDoughnut">
       <h2>Account Overview</h2>
-      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+      <p-chart type="line" [data]="dataLine" [options]="optionsLine"></p-chart>
     </div>
     <div class="chartDoughnut">
-      <h2>Monthly budget</h2>
+      <h2>Monthly Expenses</h2>
       <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
     </div>
   </div>
@@ -19,7 +19,13 @@
       [rowsPerPageOptions]="[5, 10, 25]"
       [value]="transactions"
       styleClass="p-datatable-striped"
-      [globalFilterFields]="['code', 'name', 'price', 'Quantity']"
+      [globalFilterFields]="[
+        'id',
+        'amount',
+        'account.name',
+        'type',
+        'category.name'
+      ]"
     >
       <ng-template pTemplate="caption">
         <div class="flex">
@@ -42,11 +48,17 @@
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="code">Id</th>
-          <th pSortableColumn="ammount">
+          <th pSortableColumn="amount">
             Amount <p-sortIcon field="amount"></p-sortIcon>
           </th>
           <th>Category</th>
+          <th pSortableColumn="type">
+            Type <p-sortIcon field="type"></p-sortIcon>
+          </th>
           <th>Account</th>
+          <th pSortableColumn="date">
+            Date <p-sortIcon field="date"></p-sortIcon>
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-transactions>
@@ -54,7 +66,16 @@
           <td>{{ transactions.id }}</td>
           <td>{{ transactions.amount }}</td>
           <td>{{ transactions.category.name }}</td>
+          <td>
+            <ng-container *ngIf="transactions.type; else expense">
+              <td>Income</td>
+            </ng-container>
+            <ng-template #expense>
+              <td>Expense</td>
+            </ng-template>
+          </td>
           <td>{{ transactions.account.name }}</td>
+          <td>{{ transactions.date }}</td>
         </tr>
       </ng-template>
     </p-table>
