@@ -7,6 +7,7 @@ import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     TableModule,
     DialogModule,
     DropdownModule,
+    ToggleButtonModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
