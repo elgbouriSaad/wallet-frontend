@@ -7,20 +7,40 @@ import { Table } from 'primeng/table';
   styleUrl: './transaction-page.component.scss'
 })
 export class TransactionPageComponent {
-  cities  = [
+  checked: boolean = false;
+
+
+  citiess  = [
     { name: 'New York', code: 'NY' },
     { name: 'Rome', code: 'RM' },
     { name: 'London', code: 'LDN' },
     { name: 'Istanbul', code: 'IST' },
     { name: 'Paris', code: 'PRS' }
 ];
+  cities  = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'aze', code: 'PRS' }
+];
+date: any;
   saveAccount() {
-    throw new Error('Method not implemented.');
+    console.log(this.checked);
     }
     hideDialog() {
     throw new Error('Method not implemented.');
     }
       visible: boolean = false;
+    products = [
+      {id: 1, name: 'aze', price: 100},
+      ];
     transaction = {
       "amout": 1,
       "category": "John Doe",
@@ -43,8 +63,14 @@ export class TransactionPageComponent {
     clear(_t10: Table) {
     throw new Error('Method not implemented.');
     }
-    products = [
-    {id: 1, name: 'aze', price: 100},
-    ];
     
+
+
+    isChecked(){
+      if(this.checked == true){
+        this.checked = false;
+      }else{
+        this.checked = true;
+      }
+    }
 }

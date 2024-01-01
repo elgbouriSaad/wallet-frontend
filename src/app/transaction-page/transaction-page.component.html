@@ -56,33 +56,33 @@
 </div>
 
 
-    <p-dialog class="dialog" header="New Transaction" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-            <form class="formAccount">
-                <div class="p-fluid">
+    <p-dialog class="dialog" header="New Transaction" [(visible)]="visible" [modal]="true"  [style]="{ 'width': '470px', 'height': '550px' }">
+       
+            <div class="p-fluid formAccount">
                     <div class="p-field">
-                        <label for="name">Amout</label>
-                        <input id="name" type="number" pInputText [(ngModel)]="transaction.amout" name="amout" required autofocus>
+                        <label >Amout</label>
+                        <input   type="number" pInputText [(ngModel)]="transaction.amout" name="amout" required autofocus>
                     </div>
                     <div class="p-field">
-                        <label for="name">Category</label>
-                        <p-dropdown [options]="cities" [(ngModel)]="transaction.category" optionLabel="name" [showClear]="true" placeholder="Select a City"></p-dropdown>
+                        <label >Account</label>
+                        <p-dropdown  [options]="cities" optionLabel="name" placeholder="Select a City"></p-dropdown>
                     </div>
                     <div class="p-field">
-                        <label for="name">Type</label>
-                        <input id="name" type="text" pInputText [(ngModel)]="transaction.type" name="type" required autofocus>
+                        <label >Category</label>
+                        <p-dropdown  [options]="cities" [(ngModel)]="transaction.category" optionLabel="name" [showClear]="true" placeholder="Select a City"></p-dropdown>
                     </div>
                     <div class="p-field">
-                        <label for="category">Account</label>
-                        <input id="category" type="text" pInputText [(ngModel)]="transaction.account" name="category" required autofocus>
+                        <label >Type</label>
+                        <p-toggleButton  (click)="isChecked()" [(ngModel)]="checked" onLabel="Yes" offLabel="No"></p-toggleButton>
                     </div>
+                 
+                   
                     <div class="p-field">
-                        <label for="balance">Date</label>
-                        <input id="balance" type="text" pInputText [(ngModel)]="transaction.date" name="balance" required autofocus>
+                        <label >Date</label>
+                        <p-calendar   [(ngModel)]="date"></p-calendar>
                     </div>
-                </div>
               
-               </form>
+               </div>
                <p-footer>
                 <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="hideDialog()" class="p-button-text"></button>
                 <button type="submit" pButton icon="pi pi-check" label="Save" (click)="saveAccount()" class="p-button-text"></button>
