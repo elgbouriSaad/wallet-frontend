@@ -7,6 +7,13 @@ import { Table } from 'primeng/table';
   styleUrl: './transaction-page.component.scss'
 })
 export class TransactionPageComponent {
+  cities  = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
+];
   saveAccount() {
     throw new Error('Method not implemented.');
     }
@@ -14,11 +21,12 @@ export class TransactionPageComponent {
     throw new Error('Method not implemented.');
     }
       visible: boolean = false;
-    account = {
-      "id": 1,
-      "name": "John Doe",
-      "category": "Business",
-      "balance": "$3,200.00",
+    transaction = {
+      "amout": 1,
+      "category": "John Doe",
+      "account": "Business",
+      "date": "$3,200.00",
+      "type": "$3,200.00",
     };
       showDialog() {
         this.visible = true;
