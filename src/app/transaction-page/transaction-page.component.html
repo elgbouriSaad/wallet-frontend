@@ -61,16 +61,24 @@
             <form class="formAccount">
                 <div class="p-fluid">
                     <div class="p-field">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" pInputText [(ngModel)]="account.name" name="name" required autofocus>
+                        <label for="name">Amout</label>
+                        <input id="name" type="number" pInputText [(ngModel)]="transaction.amout" name="amout" required autofocus>
                     </div>
                     <div class="p-field">
-                        <label for="category">Category</label>
-                        <input id="category" type="text" pInputText [(ngModel)]="account.category" name="category" required autofocus>
+                        <label for="name">Category</label>
+                        <p-dropdown [options]="cities" [(ngModel)]="transaction.category" optionLabel="name" [showClear]="true" placeholder="Select a City"></p-dropdown>
                     </div>
                     <div class="p-field">
-                        <label for="balance">Balance</label>
-                        <input id="balance" type="text" pInputText [(ngModel)]="account.balance" name="balance" required autofocus>
+                        <label for="name">Type</label>
+                        <input id="name" type="text" pInputText [(ngModel)]="transaction.type" name="type" required autofocus>
+                    </div>
+                    <div class="p-field">
+                        <label for="category">Account</label>
+                        <input id="category" type="text" pInputText [(ngModel)]="transaction.account" name="category" required autofocus>
+                    </div>
+                    <div class="p-field">
+                        <label for="balance">Date</label>
+                        <input id="balance" type="text" pInputText [(ngModel)]="transaction.date" name="balance" required autofocus>
                     </div>
                 </div>
               

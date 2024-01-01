@@ -6,6 +6,7 @@ import { PrimeIcons } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     ChartModule,
     TableModule,
     DialogModule,
+    DropdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
