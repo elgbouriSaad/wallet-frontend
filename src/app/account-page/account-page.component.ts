@@ -21,6 +21,9 @@ export class AccountPageComponent {
   saveAccount() {
     console.log('saveAccount');
     console.log(this.account);
+    this.httpservice.addAccount(this.account).subscribe((data) => {
+      this.accounts.push(data);
+    });
     this.visible = false;
     this.visible2 = false;
   }
@@ -30,43 +33,45 @@ export class AccountPageComponent {
   }
   visible: boolean = false;
   visible2: boolean = false;
-  account= {
+  account = {
     id: 0,
     name: '',
-    balance: '',
+    balance: 0,
     objective: [],
-    transactions: [],
   };
   showDialog() {
     this.header = 'New Account';
     this.visible = true;
-    this.account= {
+    this.account = {
       id: 0,
       name: '',
-      balance: '',
+      balance: 0,
       objective: [],
-      transactions: [],
     };
   }
-  showUpdateDialog(acc:Account) {
+  showUpdateDialog(acc: Account) {
     this.header = 'Update Account';
     this.visible2 = true;
     this.account.id = acc.id;
     this.account.name = acc.name;
-    this.account.balance = acc.balance.toString();
-
+    this.account.balance = acc.balance;
   }
-  deleteAccount(id: number) {
-    
-  }
+  deleteAccount(id: number) {}
   updateAccount() {
     console.log('updateAccount');
     console.log(this.account);
+    this.httpservice.updateAccount(this.account).subscribe((data) => {
+      this.accounts.forEach((a) => {
+        if (a.id == data.id) {
+          a.name = data.name;
+          a.balance = data.balance;
+        }
+      });
+    });
     this.visible = false;
     this.visible2 = false;
-
   }
- 
+
   clear(_t10: Table) {
     throw new Error('Method not implemented.');
   }
