@@ -60,6 +60,8 @@
             class="inputText"
             type="email"
             placeholder="Email adress"
+            [(ngModel)]="email"
+            [ngModelOptions]="{ standalone: true }"
             required
           />
         </div>
@@ -68,6 +70,8 @@
             class="inputText"
             type="password"
             placeholder="Password"
+            [(ngModel)]="password"
+            [ngModelOptions]="{ standalone: true }"
             required
           />
         </div>
