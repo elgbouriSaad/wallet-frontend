@@ -32,17 +32,21 @@ export class AccountPageComponent {
   hideDialog() {
     this.visible = false;
     this.visible2 = false;
+    this.visible3 = false;
   }
   visible: boolean = false;
   visible2: boolean = false;
+  visible3: boolean = false;
+  deletedId!: number;
   account = {
     id: 0,
     name: '',
     balance: 0,
   };
   showDialog() {
-    this.header = 'New Account';
+   
     this.visible = true;
+    
     this.account = {
       id: 0,
       name: '',
@@ -50,25 +54,32 @@ export class AccountPageComponent {
     };
   }
   showUpdateDialog(acc: Account) {
-    this.header = 'Update Account';
+ 
     this.visible2 = true;
     this.account.id = acc.id;
     this.account.name = acc.name;
     this.account.balance = acc.balance;
   }
-  deleteAccount(id: number) {
+  showDeleteDialog(id:number) {
+   
+    this.visible3 = true;
+    this.deletedId = id;
+   
+  }
+  deleteAccount() {
+
     console.log('deleteAccount');
-    this.httpservice.deleteAccount(id).subscribe(
+    this.httpservice.deleteAccount(this.deletedId).subscribe(
       (data) => {
-        this.accounts = this.accounts.filter((a) => a.id != id);
+        this.accounts = this.accounts.filter((a) => a.id != this.deletedId);
       },
       (error) => {
         console.log('Error deleting account:', error);
       },
     );
+    this.visible3 = false;
   }
   updateAccount() {
-    console.log('updateAccount');
     console.log(this.account);
     this.httpservice.updateAccount(this.account).subscribe((data) => {
       this.accounts.forEach((a) => {

@@ -70,7 +70,7 @@
             <i
               style="color: rgba(237, 44, 44, 0.866)"
               class="pi pi-trash"
-              (click)="deleteAccount(account.id)"
+              (click)="showDeleteDialog(account.id)"
             ></i>
           </td>
         </tr>
@@ -109,7 +109,7 @@
           type="number"
           pInputText
           [(ngModel)]="account.balance"
-          name="category"
+          name="balance"
           required
           autofocus
         />
@@ -154,7 +154,7 @@
           type="text"
           pInputText
           [(ngModel)]="account.name"
-          name="name"
+          name="updateName"
           required
           autofocus
         />
@@ -166,7 +166,7 @@
           type="text"
           pInputText
           [(ngModel)]="account.balance"
-          name="category"
+          name="updateBalance"
           required
           autofocus
         />
@@ -188,6 +188,39 @@
       icon="pi pi-check"
       label="Save"
       (click)="updateAccount()"
+      class="p-button-text"
+    ></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog
+  class="dialog"
+  header="Confirm Deletion"
+  [(visible)]="visible3"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0">
+    Are you sure ?
+  </p>
+  
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Cancel"
+      (click)="hideDialog()"
+      class="p-button-text"
+    ></button>
+    <button
+      type="submit"
+      pButton
+      icon="pi pi-check"
+      label="Confirm"
+      (click)="deleteAccount()"
       class="p-button-text"
     ></button>
   </p-footer>
