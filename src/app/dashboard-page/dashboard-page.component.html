@@ -19,8 +19,8 @@
             <h2>Achbal</h2>
         </div>
         <hr>
-        <a class="linkButton"  href="dashboard/overview" > <i class="icon pi pi-home"></i><span>Dashboard</span></a>
-        <a class="linkButton" name="account"  href="dashboard/account" > <i class="icon pi pi-users"></i><span>Accounts</span></a>
+        <a class="linkButton" (click)="updateTitle('Dashboard')" href="dashboard/overview" > <i class="icon pi pi-home"></i><span>Dashboard</span></a>
+        <a class="linkButton"(click)="updateTitle('Account')" name="account"  href="dashboard/account" > <i class="icon pi pi-users"></i><span>Accounts</span></a>
         <a class="linkButton"  name="category" href="dashboard/category" > <i class="icon pi pi-th-large"></i><span>Categories</span></a>
         <hr>
         <a class="linkButton" name="transation" href="dashboard/transaction" > <i class="icon pi pi-money-bill"></i><span>Transactions</span></a>
@@ -34,7 +34,7 @@
    
     
     <div class="aze">
-        <app-navbar></app-navbar>
+        <app-navbar title={{title}}></app-navbar>
         <router-outlet></router-outlet>
     </div>
 </div>

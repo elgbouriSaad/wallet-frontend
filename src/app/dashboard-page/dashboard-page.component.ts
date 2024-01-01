@@ -8,4 +8,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class DashboardPageComponent {
   sidebarVisible: boolean = true;
+  title!: string ;
+
+updateTitle(link: string) {
+  this.title = link;
+  console.log(this.title);
+}
+
 }
