@@ -10,6 +10,7 @@ import { AccountService } from '../service/account.service';
 })
 export class AccountPageComponent {
   accounts!: Account[];
+  header = 'New Account';
   constructor(private httpservice: AccountService) {}
   ngOnInit() {
     this.httpservice.allAccounts().subscribe((data) => {
@@ -18,30 +19,54 @@ export class AccountPageComponent {
   }
 
   saveAccount() {
-    throw new Error('Method not implemented.');
+    console.log('saveAccount');
+    console.log(this.account);
+    this.visible = false;
+    this.visible2 = false;
   }
   hideDialog() {
-    throw new Error('Method not implemented.');
+    this.visible = false;
+    this.visible2 = false;
   }
   visible: boolean = false;
-  account = {
-    id: 1,
-    name: 'John Doe',
-    category: 'Business',
-    balance: '$3,200.00',
+  visible2: boolean = false;
+  account= {
+    id: 0,
+    name: '',
+    balance: '',
+    objective: [],
+    transactions: [],
   };
   showDialog() {
+    this.header = 'New Account';
     this.visible = true;
+    this.account= {
+      id: 0,
+      name: '',
+      balance: '',
+      objective: [],
+      transactions: [],
+    };
   }
-  deleteAccount(arg0: any) {
-    throw new Error('Method not implemented.');
+  showUpdateDialog(acc:Account) {
+    this.header = 'Update Account';
+    this.visible2 = true;
+    this.account.id = acc.id;
+    this.account.name = acc.name;
+    this.account.balance = acc.balance.toString();
+
   }
-  updateAccount(_t30: any) {
-    throw new Error('Method not implemented.');
+  deleteAccount(id: number) {
+    
   }
-  addNewAccount() {
-    throw new Error('Method not implemented.');
+  updateAccount() {
+    console.log('updateAccount');
+    console.log(this.account);
+    this.visible = false;
+    this.visible2 = false;
+
   }
+ 
   clear(_t10: Table) {
     throw new Error('Method not implemented.');
   }
