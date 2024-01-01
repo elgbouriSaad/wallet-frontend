@@ -25,11 +25,11 @@ export class OverviewPageComponent implements OnInit {
     this.httpservice.allTransactions().subscribe((data) => {
       this.transactions = data;
       this.data = {
-        labels: this.getLabels(),
+        labels: this.getLastMonthExpensesLabels(),
         datasets: [
           {
-            data: this.getAmounts(),
-            backgroundColor: this.getColors(),
+            data: this.getLastMonthTotalExpensesAmountsByLabel(),
+            backgroundColor: this.getColorsOfLastMonthExpenses(),
             hoverBackgroundColor: ['#bec2be'],
           },
         ],
@@ -49,7 +49,7 @@ export class OverviewPageComponent implements OnInit {
             label: 'Expense',
             fill: false,
             borderColor: documentStyle.getPropertyValue('--red-500'),
-            yAxisID: 'y1',
+            yAxisID: 'y',
             tension: 0.4,
             data: this.getTotalExpenseByDayLastWeek(),
           },
@@ -100,24 +100,24 @@ export class OverviewPageComponent implements OnInit {
           display: true,
           position: 'left',
           ticks: {
-            color: '#0000ff',
+            color: textColorSecondary,
           },
           grid: {
             color: surfaceBorder,
           },
         },
-        y1: {
-          type: 'linear',
-          display: true,
-          position: 'right',
-          ticks: {
-            color: '#ff0000',
-          },
-          grid: {
-            drawOnChartArea: false,
-            color: surfaceBorder,
-          },
-        },
+        // y1: {
+        //   type: 'linear',
+        //   display: true,
+        //   position: 'right',
+        //   ticks: {
+        //     color: '#ff0000',
+        //   },
+        //   grid: {
+        //     drawOnChartArea: false,
+        //     color: surfaceBorder,
+        //   },
+        // },
       },
     };
   }
@@ -128,57 +128,108 @@ export class OverviewPageComponent implements OnInit {
   isFirstPage(): boolean {
     return this.transactions ? this.first === 0 : true;
   }
-  getLabels(): string[] {
-    const categories: string[] = [];
-    if (this.transactions) {
-      this.transactions.forEach((transaction) => {
-        if (!categories.includes(transaction.category.name)) {
-          categories.push(transaction.category.name);
-        }
-      });
-    }
-    return categories;
+  // getLabels(): string[] {
+  //   const categories: string[] = [];
+  //   if (this.transactions) {
+  //     this.transactions.forEach((transaction) => {
+  //       if (!categories.includes(transaction.category.name)) {
+  //         categories.push(transaction.category.name);
+  //       }
+  //     });
+  //   }
+  //   return categories;
+  // }
+
+  // getTotalAmountByLabel(label: string): number {
+  //   let totalAmount = 0;
+  //   if (this.transactions) {
+  //     this.transactions.forEach((transaction) => {
+  //       if (transaction.category.name === label) {
+  //         totalAmount += transaction.type
+  //           ? transaction.amount
+  //           : -transaction.amount;
+  //       }
+  //     });
+  //   }
+  //   return totalAmount;
+  // }
+
+  // // create a list of amounts that for each label, get the total amount according to the previous function
+  // getAmounts(): number[] {
+  //   const amounts: number[] = [];
+  //   if (this.transactions) {
+  //     this.getLabels().forEach((label) => {
+  //       amounts.push(this.getTotalAmountByLabel(label));
+  //     });
+  //   }
+  //   return amounts;
+  // }
+
+  //create a list that finds the corresponding category for each label and creates a list of colors
+  // getColors(): string[] {
+  //   const colors: string[] = [];
+  //   if (this.transactions) {
+  //     this.getLabels().forEach((label) => {
+  //       this.transactions.forEach((transaction) => {
+  //         if (
+  //           transaction.category.name === label &&
+  //           colors.includes(transaction.category.color) === false
+  //         ) {
+  //           colors.push(transaction.category.color);
+  //         }
+  //       });
+  //     });
+  //   }
+  //   return colors;
+  // }
+
+  getLastMonthExpensesTransactions(): Transaction[] {
+    const lastMonth = new Date();
+    lastMonth.setMonth(lastMonth.getMonth() - 1);
+
+    return this.transactions.filter(
+      (transaction) =>
+        new Date(transaction.date) >= lastMonth && transaction.type === false,
+    );
   }
 
-  getTotalAmountByLabel(label: string): number {
-    let totalAmount = 0;
-    if (this.transactions) {
-      this.transactions.forEach((transaction) => {
-        if (transaction.category.name === label) {
-          totalAmount += transaction.type
-            ? transaction.amount
-            : -transaction.amount;
-        }
-      });
-    }
-    return totalAmount;
+  getLastMonthExpensesLabels(): string[] {
+    const labels: string[] = [];
+    this.getLastMonthExpensesTransactions().forEach((transaction) => {
+      if (!labels.includes(transaction.category.name)) {
+        labels.push(transaction.category.name);
+      }
+    });
+    console.log(labels);
+    return labels;
   }
-
-  // create a list of amounts that for each label, get the total amount according to the previous function
-  getAmounts(): number[] {
+  getLastMonthTotalExpensesAmountsByLabel(): number[] {
     const amounts: number[] = [];
-    if (this.transactions) {
-      this.getLabels().forEach((label) => {
-        amounts.push(this.getTotalAmountByLabel(label));
+    this.getLastMonthExpensesLabels().forEach((label) => {
+      let totalAmount = 0;
+      this.getLastMonthExpensesTransactions().forEach((transaction) => {
+        if (transaction.category.name === label) {
+          totalAmount += transaction.amount;
+        }
       });
-    }
+      amounts.push(Math.abs(totalAmount));
+    });
+    console.log(amounts);
     return amounts;
   }
-  //create a list that finds the corresponding category for each label and creates a list of colors
-  getColors(): string[] {
+  getColorsOfLastMonthExpenses(): string[] {
     const colors: string[] = [];
-    if (this.transactions) {
-      this.getLabels().forEach((label) => {
-        this.transactions.forEach((transaction) => {
-          if (
-            transaction.category.name === label &&
-            colors.includes(transaction.category.color) === false
-          ) {
-            colors.push(transaction.category.color);
-          }
-        });
+    this.getLastMonthExpensesLabels().forEach((label) => {
+      this.getLastMonthExpensesTransactions().forEach((transaction) => {
+        if (
+          transaction.category.name === label &&
+          colors.includes(transaction.category.color) === false
+        ) {
+          colors.push(transaction.category.color);
+        }
       });
-    }
+    });
+    console.log(colors);
     return colors;
   }
   getTotalExpenseByDayLastWeek(): number[] {
@@ -190,34 +241,30 @@ export class OverviewPageComponent implements OnInit {
     this.transactions
       .filter((transaction) => new Date(transaction.date) >= lastWeek)
       .forEach((transaction) => {
-        const dayIndex = this.getDayIndex(new Date(transaction.date), lastWeek);
+        const dayIndex =
+          6 - this.getDayIndex(new Date(transaction.date), lastWeek);
         if (!transaction.type) {
           // Only consider expenses
           result[dayIndex] += transaction.amount;
         }
       });
-    console.log(result);
     return result;
   }
   getTotalIncomeByDayLastWeek(): number[] {
     const result: number[] = Array(7).fill(0);
 
-    const now = new Date();
-    const lastWeek = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() - 7,
-    );
+    const lastWeek = new Date();
+    lastWeek.setDate(lastWeek.getDate() - 7);
 
     this.transactions
       .filter((transaction) => new Date(transaction.date) >= lastWeek)
       .forEach((transaction) => {
-        const dayIndex = this.getDayIndex(new Date(transaction.date), lastWeek);
+        const dayIndex =
+          6 - this.getDayIndex(new Date(transaction.date), lastWeek);
         if (transaction.type) {
           result[dayIndex] += transaction.amount;
         }
       });
-
     return result;
   }
   private getDayIndex(date: Date, lastWeek: Date): number {
