@@ -21,6 +21,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { TransactionPageComponent } from './transaction-page/transaction-page.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TransactionPageComponent } from './transaction-page/transaction-page.co
   ],
   imports: [
     HttpClientModule,
+    SelectButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
@@ -45,7 +47,7 @@ import { TransactionPageComponent } from './transaction-page/transaction-page.co
     SidebarModule,
     ChartModule,
     TableModule,
-    DialogModule
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

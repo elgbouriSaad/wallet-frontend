@@ -5,8 +5,18 @@
       <p-chart type="line" [data]="dataLine" [options]="optionsLine"></p-chart>
     </div>
     <div class="chartDoughnut">
-      <h2>Monthly Expenses</h2>
-      <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+      <p-selectButton
+        [options]="stateOptions"
+        [(ngModel)]="value"
+        optionLabel="label"
+        optionValue="value"
+      ></p-selectButton>
+      <h2>{{ value === "off" ? "Monthly Expenses" : "Monthly Income" }}</h2>
+      <p-chart
+        type="doughnut"
+        [data]="value === 'off' ? expensesData : incomeData"
+        [options]="options"
+      ></p-chart>
     </div>
   </div>
 
