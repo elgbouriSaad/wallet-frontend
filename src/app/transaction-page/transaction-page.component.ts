@@ -64,7 +64,8 @@ export class TransactionPageComponent {
       });
   }
   hideDialog() {
-    throw new Error('Method not implemented.');
+    this.visible = false;
+    this.visible2 = false;
   }
   visible: boolean = false;
 
@@ -87,8 +88,15 @@ export class TransactionPageComponent {
       type: true,
     };
   }
-  showUpdateDialog() {
+  showUpdateDialog(trans : Transaction) {
     this.visible2 = true;
+    this.transaction.id = trans.id;
+    this.transaction.account =  trans.account;
+    this.transaction.amount = trans.amount;
+    this.transaction.category = trans.category;
+    this.transaction.type = trans.type;
+    this.transaction.date = trans.date;
+
   }
   deleteAccount(arg: Transaction) {
     this.httpTransactionService.deleteTransaction(arg).subscribe((data) => {
@@ -97,18 +105,21 @@ export class TransactionPageComponent {
       );
     });
   }
-  updateAccount(_t30: any) {
+  updateAccount() {
+    console.log("azeaze89a-98a-9z8e-a9z8e-az98");
     this.httpTransactionService.updateTransaction(this.transaction).subscribe(
       (data) => {
         this.transactions = this.transactions.filter(
           (transaction) => transaction.id !== this.transaction.id,
         );
         this.transactions.push(data);
+        
       },
       (error) => {
         console.log(error);
       },
     ); // TO TEST
+    window.location.reload();
   }
   addNewAccount() {
     throw new Error('Method not implemented.');

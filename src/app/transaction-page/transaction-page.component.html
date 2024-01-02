@@ -87,7 +87,7 @@
             <i
               style="color: rgb(183, 137, 226)"
               class="pi pi-pencil"
-              (click)="showUpdateDialog()"
+              (click)="showUpdateDialog(transaction)"
             ></i>
             <i
               style="color: rgba(237, 44, 44, 0.866)"
@@ -215,7 +215,7 @@
       <label>Type</label>
 
       <p-toggleButton
-        [(ngModel)]="checked2"
+        [(ngModel)]="transaction.type"
         onLabel="Income"
         offLabel="Expense"
       ></p-toggleButton>
@@ -223,7 +223,8 @@
 
     <div class="p-field">
       <label>Date</label>
-      <p-calendar [(ngModel)]="date"></p-calendar>
+      <p-calendar [(ngModel)]="transaction.date" dateFormat="yy-mm-dd"></p-calendar>
+
     </div>
   </div>
   <p-footer>
@@ -240,7 +241,7 @@
       pButton
       icon="pi pi-check"
       label="Save"
-      (click)="saveAccount()"
+      (click)="updateAccount()"
       class="p-button-text"
     ></button>
   </p-footer>
