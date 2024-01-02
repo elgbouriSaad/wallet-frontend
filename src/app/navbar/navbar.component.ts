@@ -6,7 +6,6 @@ import { Component,Input, OnInit } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit{
-  @Input() title!: string ;
   title1: any ;
   ngOnInit(): void {
     if ( this.pageUrl()== '/dashboard/account') {

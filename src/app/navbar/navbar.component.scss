@@ -2,12 +2,12 @@
   
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #11111170;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-left:1px solid #111111;
   }
-  
-  
+
 .topnav-right {
     float: right;
   }

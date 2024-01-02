@@ -50,13 +50,15 @@
         <tr>
           <td>{{ category.id }}</td>
           <td>{{ category.name }}</td>
-          <td>
+          <td style="height: 50px;width: 200px;">
             <div
               [ngStyle]="{
                 'background-color': category.color,
                 height: '40px',
-                width: '150px',
-                'border-radius': '10px'
+                width: '120px',
+                'border-radius': '10px',
+                'margin': 'auto',
+
               }"
             ></div>
           </td>

@@ -59,7 +59,7 @@
             Account <p-sortIcon field="account"></p-sortIcon>
           </th>
 
-          <th pSortableColumn="category">
+          <th  pSortableColumn="category">
             Category<p-sortIcon field="account"></p-sortIcon>
           </th>
           <th pSortableColumn="date">
@@ -82,6 +82,8 @@
           </td>
           <td>{{ transaction.account.name }}</td>
           <td>{{ transaction.category.name }}</td>
+          <!-- <td ><span style="border: 1px solid;padding: 8px;border-radius: 10px;" [style.border-color]="transaction.category.color">{{ transaction.category.name }}</span></td>  -->
+
           <td>{{ transaction.date }}</td>
           <td class="action">
             <i
